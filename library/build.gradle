@@ -1,15 +1,16 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven' // ADD THIS
 
 group='com.github.jitpack'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 23
+        minSdkVersion 23
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         consumerProguardFiles 'proguard-rules.pro'
@@ -17,6 +18,11 @@ android {
 }
 
 dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.github.cicdevelopmentnz:Android-BLE:v0.0.4'
+    compile 'com.github.cicdevelopmentnz:Android-WIFI:v0.0.1'
+    compile 'com.github.cicdevelopmentnz:Android-MDNS:v0.0.1'
+
     // add dependencies here
 }
 
@@ -42,6 +48,9 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives sourcesJar
     archives javadocJar
+}
+repositories {
+    mavenCentral()
 }
 
 // uncomment to build a jar file in addition to the default aar file
