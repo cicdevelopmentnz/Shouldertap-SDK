@@ -22,8 +22,8 @@ class Relay(private val mContext: Context){
     fun start(){
         this.wifi?.station?.start()?.subscribe({
             stationInfo ->
-
             var rNetwork = RelayNetwork(stationInfo)
+            println(rNetwork.ssid + " " + rNetwork.pass)
             var beacon = Beacon("Shouldertap-Gateway", rNetwork.toMap())
             this.manager?.start()?.subscribe({
                 status ->
