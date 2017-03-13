@@ -20,9 +20,12 @@ class Client(private val mContext: Context){
     fun start(){
         scanner?.startFiltered("Shouldertap-Gateway", arrayOf("Gateway-Name", "Gateway-Password"))?.subscribe({
             gatewayInfo ->
-
+            
+            println(gatewayInfo.toString())
             var gatewayName = gatewayInfo.get("Gateway-Name")
             var gatewayPass = gatewayInfo.get("Gateway-Password")
+
+            println("Gateway info: " + gatewayName + " " + gatewayPass)
 
             if(gatewayName != null) {
                 wifi?.client?.connect(gatewayName as String, gatewayPass as String)?.subscribe({
