@@ -21,15 +21,20 @@ class Client(private val mContext: Context){
         scanner?.startFiltered("Shouldertap-Gateway", arrayOf("Gateway-Name", "Gateway-Password"))?.subscribe({
             gatewayInfo ->
 
-            wifi?.client?.connect(gatewayInfo.get("Gateway-Name") as String, gatewayInfo.get("Gateway-Password") as String)?.subscribe({
-                connect ->
+            var gatewayName = gatewayInfo.get("Gateway-Name")
+            var gatewayPass = gatewayInfo.get("Gateway-Password")
 
-            }, {
-                err ->
-                println("Failed to connect")
-            },{
-                scanner?.stop()
-            })
+            if(gatewayName != null) {
+                wifi?.client?.connect(gatewayName as String, gatewayPass as String)?.subscribe({
+                    connect ->
+
+                }, {
+                    err ->
+                    println("Failed to connect")
+                }, {
+                    scanner?.stop()
+                })
+            }
 
         })
     }
