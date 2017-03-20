@@ -1,6 +1,8 @@
 package nz.co.cic.shouldertap
 
 import android.content.Context
+import com.beust.klaxon.JsonArray
+import com.beust.klaxon.JsonObject
 import nz.co.cic.ble.scanner.Scanner
 import nz.co.cic.wifi.Wifi
 
@@ -21,10 +23,14 @@ class Client(private val mContext: Context){
         scanner?.startFiltered("Shouldertap-Gateway", arrayOf("Gateway-Name", "Gateway-Password"))?.subscribe({
             gatewayInfo ->
 
-            println(gatewayInfo.toString())
-            var gatewayName = gatewayInfo.get("Gateway-Name")
-            var gatewayPass = gatewayInfo.get("Gateway-Password")
+            var messages = gatewayInfo.get("messages") as JsonArray<JsonObject>
 
+
+            println(gatewayInfo.toString())
+
+            var gatewayName = messages.get(0).get("value")
+            var gatewayPass = messages.get(1).get("value")
+            
             println("Gateway info: " + gatewayName + " " + gatewayPass)
 
             if(gatewayName != null) {
