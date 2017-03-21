@@ -5,9 +5,6 @@ import nz.co.cic.ble.beacon.Beacon
 import nz.co.cic.ble.beacon.BeaconManager
 import nz.co.cic.wifi.Wifi
 
-/**
- * Created by dipshit on 12/03/17.
- */
 
 class Relay(private val mContext: Context){
 

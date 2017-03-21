@@ -6,9 +6,6 @@ import com.beust.klaxon.JsonObject
 import nz.co.cic.ble.scanner.Scanner
 import nz.co.cic.wifi.Wifi
 
-/**
- * Created by dipshit on 12/03/17.
- */
 
 class Client(private val mContext: Context){
 
@@ -25,12 +22,11 @@ class Client(private val mContext: Context){
 
             var messages = gatewayInfo.get("messages") as JsonArray<JsonObject>
 
-
             println(gatewayInfo.toString())
 
             var gatewayName = messages.get(0).get("value")
             var gatewayPass = messages.get(1).get("value")
-            
+
             println("Gateway info: " + gatewayName + " " + gatewayPass)
 
             if(gatewayName != null) {

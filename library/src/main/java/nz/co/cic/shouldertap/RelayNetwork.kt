@@ -2,9 +2,6 @@ package nz.co.cic.shouldertap
 
 import android.net.wifi.p2p.WifiP2pGroup
 
-/**
- * Created by dipshit on 12/03/17.
- */
 
 data class RelayNetwork(val wifiP2pGroup: WifiP2pGroup){
 
